@@ -6,10 +6,17 @@ class YoutubeScraper{
         return this.parse_html(html_data.data)
     }
     static parse_html(htmlData){
-        const spec = htmlData.match(/window\["ytInitialData"\](.)*/)[0]
-        const spec2 = spec.match(/"subscriberCountText":\{"runs"(.)*/)[0]
-        const spec3 = JSON.parse(spec2.match(/\{"text":"[^\}]*\}/)[0]).text
-        return this.calculate_subscriber_number_from_string(spec3)
+        const firstString = htmlData.match(/window\["ytInitialData"\](.)*/)
+        if (firstString === null) {
+            return 0
+        }
+        const secondString = firstString[0].match(/"subscriberCountText":\{"runs"(.)*/)
+        if (secondString === null) {
+            return 0
+        }
+        const thirdString = JSON.parse(secondString[0].match(/\{"text":"[^\}]*\}/)[0]).text
+        return this.calculate_subscriber_number_from_string(thirdString)
+
     }
     static calculate_subscriber_number_from_string(subscribeString){
         const stringSequences = subscribeString.split(" ")
