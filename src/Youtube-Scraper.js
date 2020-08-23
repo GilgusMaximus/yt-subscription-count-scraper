@@ -1,4 +1,4 @@
-const requester = require("./VideoRequester")
+const requester = require("./ChannelRequester")
 
 class YoutubeScraper{
     static async scrape_subscriber_count_from_channel(channelURL){
