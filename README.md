@@ -9,7 +9,7 @@ If this library should not work at some point, please create an issue and let me
 ## Installation
 `npm install yt-subscription-count-scraper`
 
-##Usage
+## Usage
 `const ytsubcounter = require("yt-subscription-count-scraper")`
 
 ## API
