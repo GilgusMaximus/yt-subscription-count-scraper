@@ -1,6 +1,6 @@
 {
   "name": "yt-subscription-count-scraper",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "Requests the HTML page of channel and extracts the subscriber count of the channel.",
   "main": "index.js",
   "scripts": {
@@ -21,7 +21,10 @@
     "youtube-fetcher",
     "subscriber count",
     "subscriber",
-    "count"
+    "count",
+    "youtube subscribe count",
+    "youtube subscriber scraper",
+    "youtube subscriber count scraper"
   ],
   "author": "GilgusMaximus <software@lucahohmann.com>",
   "license": "GPLv3",

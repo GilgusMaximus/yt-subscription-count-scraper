@@ -6,16 +6,18 @@ class YoutubeScraper{
         return this.parse_html(html_data.data)
     }
     static parse_html(htmlData){
-        const firstString = htmlData.match(/window\["ytInitialData"\](.)*/)
+        let firstString = htmlData.match(/"remarketingPing":".+?("tvBanner":)/s)
+        firstString = firstString[0].substr(0, firstString[0].length-12)
+
         if (firstString === null) {
             return 0
         }
-        const secondString = firstString[0].match(/"subscriberCountText":\{"runs"(.)*/)
+        const secondString = "{" + firstString.match(/"subscriberCountText":{"simpleText":(.)+/)
         if (secondString === null) {
             return 0
         }
-        const thirdString = JSON.parse(secondString[0].match(/\{"text":"[^\}]*\}/)[0]).text
-        return this.calculate_subscriber_number_from_string(thirdString)
+        const thirdString = JSON.parse(secondString.substr(0, secondString.length-2) + "}")
+        return this.calculate_subscriber_number_from_string(thirdString.subscriberCountText.simpleText)
 
     }
     static calculate_subscriber_number_from_string(subscribeString){
